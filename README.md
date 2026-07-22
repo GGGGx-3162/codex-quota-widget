@@ -14,6 +14,10 @@
   <a href="#中文说明">中文说明</a>
 </p>
 
+<p align="center">
+  <img src="docs/widget-preview.png" width="360" alt="Codex Quota Widget showing the weekly quota">
+</p>
+
 ## Features
 
 - Native SwiftUI macOS app with a translucent frosted-glass design.
