@@ -1,0 +1,5 @@
+dist/
+tests/ParserSmoke.exe
+tests/ParserSmoke.pdb
+*.pdb
+*.zip
