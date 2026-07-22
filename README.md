@@ -35,7 +35,7 @@
 
 ## Install
 
-1. Download `Codex额度-1.3.1.dmg` from [Releases](https://github.com/GGGGx-3162/codex-quota-widget/releases/latest).
+1. Download `Codex-Quota-Widget-1.3.1.dmg` from [Releases](https://github.com/GGGGx-3162/codex-quota-widget/releases/latest).
 2. Open the DMG and drag **Codex 额度** to **Applications**.
 3. Launch the app, then drag the widget anywhere on the desktop.
 
