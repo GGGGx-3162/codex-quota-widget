@@ -1,0 +1,45 @@
+name: Build Windows release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-windows:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'windows-v')
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build Windows widget
+        shell: pwsh
+        run: ./windows/build-release.ps1
+
+      - name: Package release
+        shell: pwsh
+        run: |
+          $tag = if ('${{ github.event_name }}' -eq 'release') { '${{ github.event.release.tag_name }}' } else { 'windows-dev' }
+          $version = $tag -replace '^windows-v', ''
+          Compress-Archive -Path ./windows/dist/* -DestinationPath "./CodexQuotaWidget-Windows-$version.zip" -Force
+
+      - name: Attach package to GitHub Release
+        if: github.event_name == 'release'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = '${{ github.event.release.tag_name }}'
+          $version = $tag -replace '^windows-v', ''
+          gh release upload $tag "./CodexQuotaWidget-Windows-$version.zip" --clobber
+
+      - name: Upload workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CodexQuotaWidget-Windows
+          path: CodexQuotaWidget-Windows-*.zip
