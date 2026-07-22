@@ -119,3 +119,8 @@ A Windows 10/11 taskbar edition is also available.
 - Starts automatically after Windows sign-in and supports drag-to-adjust positioning.
 - Download: [Windows Release](https://github.com/GGGGx-3162/codex-quota-widget/releases/tag/windows-v1.1.0)
 - Source and build instructions: [windows/](windows/)
+
+
+<p align="center">
+  <img src="docs/windows-widget-preview.svg" width="339" alt="Codex Quota Widget for Windows">
+</p>
