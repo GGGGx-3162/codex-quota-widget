@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.2 — 2026-07-22
+
+- Refresh promptly when Codex writes a new local quota record.
+- Keep the 30-second periodic refresh as a reliable fallback.
+
 ## 1.3.1 — 2026-07-22
 
 - Refresh immediately at launch, then every 30 seconds.

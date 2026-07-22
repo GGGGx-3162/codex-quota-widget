@@ -21,6 +21,8 @@ final class UsageStore: ObservableObject {
     private let reader: CodexUsageReader
     private let launchAtLoginManager = LaunchAtLoginManager()
     private var autoRefreshTask: Task<Void, Never>?
+    private var sessionChangeMonitor: SessionChangeMonitor?
+    private var sessionChangeRefreshTask: Task<Void, Never>?
     private static let alwaysOnTopKey = "CodexGauge.alwaysOnTop"
     private static let languageKey = "CodexGauge.language"
 
@@ -38,12 +40,18 @@ final class UsageStore: ObservableObject {
         autoRefreshTask = Task { [weak self] in
             await self?.runAutoRefresh()
         }
+        sessionChangeMonitor = SessionChangeMonitor { [weak self] in
+            Task { @MainActor [weak self] in
+                self?.scheduleSessionChangeRefresh()
+            }
+        }
     }
 
     func refresh() async {
         guard !isRefreshing else { return }
         isRefreshing = true
         snapshot = await reader.read()
+        sessionChangeMonitor?.rescan()
         refreshLaunchAtLoginStatus()
         hasLoaded = true
         isRefreshing = false
@@ -55,6 +63,17 @@ final class UsageStore: ObservableObject {
             try? await Task.sleep(for: .seconds(30))
             guard !Task.isCancelled else { return }
             await refresh()
+        }
+    }
+
+    private func scheduleSessionChangeRefresh() {
+        sessionChangeRefreshTask?.cancel()
+        sessionChangeRefreshTask = Task { [weak self] in
+            // Codex can append several records in a burst. Debouncing lets the
+            // final quota record land before the reader scans the file tail.
+            try? await Task.sleep(for: .seconds(1))
+            guard !Task.isCancelled else { return }
+            await self?.refresh()
         }
     }
 
