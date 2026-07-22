@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="tile" x1="170" y1="120" x2="850" y2="920" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2b8a5d"/>
+      <stop offset="0.48" stop-color="#126b49"/>
+      <stop offset="1" stop-color="#073f32"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="300" y1="260" x2="760" y2="790" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f0fff2"/>
+      <stop offset="0.72" stop-color="#d7f4dd"/>
+      <stop offset="1" stop-color="#bfe8cc"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="210" y1="120" x2="690" y2="690" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.27"/>
+      <stop offset="0.32" stop-color="#ffffff" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(512 510) rotate(90) scale(322)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#45d3aa" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#45d3aa" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="tileShadow" x="0" y="0" width="1024" height="1024" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="30" stdDeviation="24" flood-color="#032b22" flood-opacity="0.36"/>
+    </filter>
+    <filter id="ringShadow" x="170" y="170" width="684" height="684" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#052b22" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+
+  <g filter="url(#tileShadow)">
+    <rect x="72" y="54" width="880" height="880" rx="208" fill="url(#tile)"/>
+    <rect x="78" y="60" width="868" height="868" rx="202" fill="none" stroke="#bdebd0" stroke-opacity="0.36" stroke-width="8"/>
+    <path d="M118 308C136 174 224 94 366 76H730C465 123 269 228 118 422V308Z" fill="url(#glass)"/>
+    <ellipse cx="512" cy="510" rx="322" ry="322" fill="url(#glow)"/>
+  </g>
+
+  <circle cx="512" cy="510" r="254" fill="none" stroke="#8bc7a5" stroke-opacity="0.24" stroke-width="88"/>
+  <circle cx="512" cy="510" r="254" fill="none" stroke="url(#ring)" stroke-width="88" stroke-linecap="round"
+          stroke-dasharray="1149 447" transform="rotate(-90 512 510)" filter="url(#ringShadow)"/>
+  <circle cx="262" cy="558" r="44" fill="#22c7af"/>
+  <circle cx="262" cy="558" r="23" fill="#83f0d8" fill-opacity="0.52"/>
+
+  <path d="M402 416L497 510L402 604" fill="none" stroke="#effff2" stroke-width="58" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M552 604H656" fill="none" stroke="#effff2" stroke-width="58" stroke-linecap="round"/>
+
+  <path d="M198 790C270 864 360 898 466 908" fill="none" stroke="#a7dfbd" stroke-opacity="0.14" stroke-width="12" stroke-linecap="round"/>
+</svg>
